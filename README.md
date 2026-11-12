@@ -8,6 +8,11 @@ Health data are often split into many subgroups, for example by age, sex, race a
 ## The idea
 Each subgroup's network borrows strength only from a small set of its most similar ("nearest-neighbor") subgroups, rather than from every other subgroup. This keeps the subgroup-specific structure, stabilizes estimates for small groups, and makes the computational cost grow roughly linearly in the number of groups. Inference is fully Bayesian, so every edge comes with uncertainty. Posterior sampling uses an MCMC sampler written in C++ (Rcpp).
 
+## Interactive app
+**[Live demo: NNGGM neighbor-study explorer](https://lizsul.shinyapps.io/nnggm-neighbor-study/)** (R Shiny)
+
+Browse the simulation's neighbor structure: the neighbor DAG (click a group to select it), each group's true vs. estimated network, side-by-side comparisons of neighbor-selection rules and distances, and a radius explorer that recomputes neighbor sets on the fly.
+
 ## Results (simulation study)
 Simulated data: K = 50 subgroups, p = 12 variables, and subgroup sizes from 6 to about 1,600. Each subgroup has its own true network. Results are pooled over 10 replicates. NNGGM is compared with three standard approaches:
 - **Pooled:** one graphical lasso fit on all the data combined.
@@ -44,11 +49,6 @@ Seconds per 1,000 MCMC iterations as the number of subgroups K grows from 25 to 
 
 **(a)** Empirical coverage of the 95% posterior credible intervals for the partial correlations, shown separately for true edges and true zeros, by subgroup size. Coverage is at or above the nominal 95% (dashed line) in small and moderate subgroups, and slightly below it (about 0.94) for true edges in the largest subgroups.
 **(b)** Intervals narrow as subgroups grow, so the model is honest about how much each subgroup's data can support.
-
-## Interactive app
-**[Live demo: NNGGM neighbor-study explorer](https://lizsul.shinyapps.io/nnggm-neighbor-study/)** (R Shiny)
-
-Browse the simulation's neighbor structure: the neighbor DAG (click a group to select it), each group's true vs. estimated network, side-by-side comparisons of neighbor-selection rules and distances, and a radius explorer that recomputes neighbor sets on the fly.
 
 ## Skills used
 Bayesian modeling · MCMC (Metropolis-within-Gibbs) · R · Rcpp/C++ · R Shiny · simulation study design · high-dimensional statistics
